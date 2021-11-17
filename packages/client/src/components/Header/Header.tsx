@@ -4,17 +4,26 @@ import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 
 import "./Header.scss";
 
-export default function Header({ darkMode }: { darkMode: boolean }) {
+type Props = {
+  handleThemeMode: any;
+  darkMode: boolean;
+};
+
+export default function Header({ handleThemeMode, darkMode }: Props) {
   return (
-    <div className="header">
-      <div className={darkMode ? "logo dark-color" : "logo light-color"}>
+    <div
+      className={
+        darkMode ? "header dark-background" : "header light-background"
+      }
+    >
+      <div className={darkMode ? "logo light-color" : "logo dark-color"}>
         MVST.
       </div>
       <div className="mode">
-        <BsFillSunFill className={darkMode ? "dark-color" : "light-color"} />
+        <BsFillSunFill className={darkMode ? "light-color" : "dark-color"} />
         <Switch
-          onChange={() => {}}
-          checked={true}
+          onChange={handleThemeMode}
+          checked={darkMode}
           onColor="#373838"
           offColor="#373838"
           checkedIcon={false}
@@ -22,7 +31,7 @@ export default function Header({ darkMode }: { darkMode: boolean }) {
           width={40}
           height={20}
         />
-        <BsFillMoonFill className={darkMode ? "dark-color" : "light-color"} />
+        <BsFillMoonFill className={darkMode ? "light-color" : "dark-color"} />
       </div>
     </div>
   );
