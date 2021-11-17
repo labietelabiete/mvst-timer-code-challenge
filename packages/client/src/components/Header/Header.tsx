@@ -24,8 +24,8 @@ export default function Header({ handleThemeMode, darkMode }: Props) {
         <Switch
           onChange={handleThemeMode}
           checked={darkMode}
-          onColor="#373838"
-          offColor="#373838"
+          onColor={darkMode ? "#c0c0c0" : "#373838"}
+          offColor={darkMode ? "#c0c0c0" : "#373838"}
           checkedIcon={false}
           uncheckedIcon={false}
           width={40}
