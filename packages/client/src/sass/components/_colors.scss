@@ -1,0 +1,17 @@
+$lightColor: #F7F6F3;
+$darkColor: #373838;
+
+.dark-color{
+  color: $darkColor;
+}
+.light-color{
+  color: $lightColor;
+}
+
+.dark-background{
+  background-color: c.$darkColor;
+}
+
+.light-background{
+  background-color: $lightColor;
+}
