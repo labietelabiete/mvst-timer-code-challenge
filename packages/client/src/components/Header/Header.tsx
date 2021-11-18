@@ -20,7 +20,11 @@ export default function Header({ handleThemeMode, darkMode }: Props) {
         MVST.
       </div>
       <div className="mode">
-        <BsFillSunFill className={darkMode ? "light-color" : "dark-color"} />
+        <BsFillSunFill
+          className={
+            darkMode ? "light-icon light-color" : "light-icon dark-color"
+          }
+        />
         <Switch
           onChange={handleThemeMode}
           checked={darkMode}
@@ -31,7 +35,11 @@ export default function Header({ handleThemeMode, darkMode }: Props) {
           width={40}
           height={20}
         />
-        <BsFillMoonFill className={darkMode ? "light-color" : "dark-color"} />
+        <BsFillMoonFill
+          className={
+            darkMode ? "dark-icon light-color" : "dark-icon dark-color"
+          }
+        />
       </div>
     </div>
   );

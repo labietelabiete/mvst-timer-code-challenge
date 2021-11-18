@@ -1,6 +1,5 @@
 import { useState } from "react";
-import LocalTimer from "../LocalTimer";
-import GlobalTimer from "../GlobalTimer";
+import Timer from "../Timer";
 
 import { BsPlay, BsStop } from "react-icons/bs";
 
@@ -8,9 +7,9 @@ import "./Main.scss";
 
 export default function Main({ darkMode }: { darkMode: boolean }) {
   const [isOn, setIsOn] = useState(false);
+  const globalValue: string = "00:01:34";
 
   const handleIsOn = () => {
-    // setIsOn(!isOn);
     setIsOn((prevState) => {
       if (prevState) {
         console.log("Getting off");
@@ -26,7 +25,13 @@ export default function Main({ darkMode }: { darkMode: boolean }) {
       className={darkMode ? "main dark-background" : "main light-background"}
     >
       <div className="timer-wrap">
-        <GlobalTimer time={50} darkMode={darkMode} />
+        <div
+          className={
+            darkMode ? "global-timer light-color" : "global-timer dark-color"
+          }
+        >
+          {globalValue}{" "}
+        </div>
         <button
           onClick={handleIsOn}
           className={
@@ -49,12 +54,7 @@ export default function Main({ darkMode }: { darkMode: boolean }) {
             />
           )}
 
-          <LocalTimer
-            initialValue={{ hours: 0, minutes: 0, seconds: 0 }}
-            // initialValue={0}
-            darkMode={darkMode}
-            isOn={isOn}
-          />
+          <Timer initialValue={0} darkMode={darkMode} isOn={isOn} />
         </button>
       </div>
     </div>
