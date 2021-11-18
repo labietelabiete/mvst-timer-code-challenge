@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import "./Timer.scss";
+import "./LocalTimer.scss";
 
 interface State {
   time: number;
@@ -13,7 +13,7 @@ interface props {
   darkMode: boolean;
 }
 
-export default function Timer(props: props) {
+export default function LocalTimer(props: props) {
   const [state, setState] = useState<State>({
     time: props.time,
     seconds: props.time - Math.floor((props.time - 1) / 60) * 60 - 1,

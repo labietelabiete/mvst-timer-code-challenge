@@ -1,14 +1,19 @@
 import React from "react";
-import Timer from "../../components/Timer";
+import LocalTimer from "../LocalTimer";
+import GlobalTimer from "../GlobalTimer";
 
 import "./Main.scss";
 
 export default function Main({ darkMode }: { darkMode: boolean }) {
   return (
-    <div className={darkMode ? "main dark-background" : "main light-background"}>
+    <div
+      className={darkMode ? "main dark-background" : "main light-background"}
+    >
       <div className="timer-wrap">
-        <Timer time={50} darkMode={darkMode} />
-        <Timer time={50} darkMode={darkMode} />
+        <GlobalTimer time={50} darkMode={darkMode} />
+        <button className="timer-button">
+          <LocalTimer time={50} darkMode={darkMode} />
+        </button>
       </div>
     </div>
   );
