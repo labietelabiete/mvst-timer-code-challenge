@@ -50,8 +50,8 @@ export default function Main({ darkMode }: { darkMode: boolean }) {
           )}
 
           <LocalTimer
-            // initialValue={{ hours: 0, minutes: 0, seconds: 0 }}
-            initialValue={0}
+            initialValue={{ hours: 0, minutes: 0, seconds: 0 }}
+            // initialValue={0}
             darkMode={darkMode}
             isOn={isOn}
           />
