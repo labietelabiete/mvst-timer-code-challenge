@@ -34,7 +34,7 @@ export default function GlobalTimer(props: props) {
     }, 1000);
   }, [state.time]);
   return (
-    <h2 className={props.darkMode ? "main light-color" : "main dark-color"}>{`${
+    <h2 className={props.darkMode ? "light-color" : "dark-color"}>{`${
       state.minutes
     }: ${state.seconds <= 10 ? `0${state.seconds}` : state.seconds}`}</h2>
   );

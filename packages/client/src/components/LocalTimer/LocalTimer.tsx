@@ -2,40 +2,56 @@ import { useState, useEffect } from "react";
 
 import "./LocalTimer.scss";
 
-interface State {
-  time: number;
-  seconds: number;
-  minutes: number;
-}
+// interface State {
+//   time: number;
+//   seconds: number;
+//   minutes: number;
+// }
 
-interface props {
-  time: number;
+interface Props {
+  // initialValue: { hours: number; minutes: number; seconds: number };
+  initialValue: number;
   darkMode: boolean;
+  isOn: boolean;
 }
 
-export default function LocalTimer(props: props) {
-  const [state, setState] = useState<State>({
-    time: props.time,
-    seconds: props.time - Math.floor((props.time - 1) / 60) * 60 - 1,
-    minutes: Math.floor((props.time - 1) / 60),
-  });
+export default function LocalTimer({ initialValue, darkMode, isOn }: Props) {
+  const [localTime, setLocalTime] = useState(initialValue);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (state.time === 0) {
-        return;
-      }
+    if (isOn) {
+      setTimeout(() => {
+        //   setLocalTime((prevState) => {
+        //     let updateTime = prevState;
+        //     if (updateTime.seconds < 60) {
+        //       updateTime.seconds++;
+        //     } else {
+        //       updateTime.seconds = 0;
+        //       updateTime.minutes++;
+        //     }
+        //     if (updateTime.minutes >= 60) {
+        //       updateTime.hours++;
+        //       updateTime.minutes = 0;
+        //     }
+        //     console.log(updateTime);
+        //     return updateTime;
+        //   });
+        // }, 1000);
+        /////////////////////////////////
+        let updatedLocalTime = localTime;
+        updatedLocalTime++;
+        setLocalTime(updatedLocalTime);
+      }, 1000);
+    } else {
+      setLocalTime(initialValue);
+    }
+    console.log(localTime);
+  }, [isOn, localTime]);
 
-      setState({
-        time: state.time - 1,
-        minutes: Math.floor((state.time - 1) / 60),
-        seconds: state.time - Math.floor((state.time - 1) / 60) * 60 - 1,
-      });
-    }, 1000);
-  }, [state.time]);
   return (
-    <h2 className={props.darkMode ? "main light-color" : "main dark-color"}>{`${
-      state.minutes
-    }: ${state.seconds <= 10 ? `0${state.seconds}` : state.seconds}`}</h2>
+    <div className={darkMode ? "dark-color" : "light-color"}>
+      {/* {localTime.hours}:{localTime.minutes}:{localTime.seconds} */}
+      {localTime}
+    </div>
   );
 }
