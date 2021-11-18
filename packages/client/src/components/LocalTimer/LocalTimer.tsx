@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { secondsToString } from "./../../utils/secondsToString";
+
 import "./LocalTimer.scss";
 
 // interface State {
@@ -20,8 +22,8 @@ export default function LocalTimer({ initialValue, darkMode, isOn }: Props) {
 
   useEffect(() => {
     if (isOn) {
-      setTimeout(() => {
-        let updatedLocalTime = localTime;
+      const timeOut = setTimeout(() => {
+        let updatedLocalTime = { ...localTime };
         if (updatedLocalTime.seconds < 60) {
           updatedLocalTime.seconds++;
         } else {
@@ -39,6 +41,7 @@ export default function LocalTimer({ initialValue, darkMode, isOn }: Props) {
         // updatedLocalTime++;
         // setLocalTime(updatedLocalTime);
       }, 1000);
+      console.log(timeOut);
     } else {
       setLocalTime(initialValue);
     }
