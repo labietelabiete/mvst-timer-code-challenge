@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 
 import { secondsToString } from "../../utils/secondsToString";
 
-import "./Timer.scss";
-
 type Props = {
   initialValue: number;
   darkMode: boolean;
