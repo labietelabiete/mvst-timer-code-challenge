@@ -15,4 +15,3 @@ const CONFIG = {
 };
 
 export const config = CONFIG;
-// const config = CONFIG;
