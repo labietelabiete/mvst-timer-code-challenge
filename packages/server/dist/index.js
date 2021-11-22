@@ -12,11 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("./server");
 const config_1 = require("./config/config");
 const connect_1 = require("./db/connect");
-const seed_1 = require("./db/seed");
+// import { resetTimer } from "./db/seed";
 console.log(config_1.config.db.url);
 (0, connect_1.connect)()
     .then(() => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, seed_1.resetTimer)();
+    // await resetTimer();
     server_1.app.listen(config_1.config.app.port, () => {
         console.log(`Server is now running at port ${config_1.config.app.port}!`);
     });

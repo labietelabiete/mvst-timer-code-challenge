@@ -9,9 +9,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
-// import { SERVER } from "./constants/routes";
-// import { timeRouter } from "./routes/time-routes";
-// Express settings
+const timer_routes_1 = require("./routes/timer-routes");
 exports.app = (0, express_1.default)();
 exports.app.use(express_1.default.json());
 exports.app.use((0, morgan_1.default)("dev"));
@@ -22,5 +20,5 @@ exports.app.use((0, express_rate_limit_1.default)({
     max: 100,
     message: "Reached 100 queries for application to MVST.",
 }));
-// app.use(`${SERVER.MAIN}`, timeRouter);
+exports.app.use("/", timer_routes_1.timerRouter);
 //# sourceMappingURL=server.js.map

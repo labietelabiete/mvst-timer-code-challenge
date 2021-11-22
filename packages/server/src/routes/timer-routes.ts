@@ -6,3 +6,5 @@ const timerRouter = Router();
 
 timerRouter.get("/", timerController.get);
 timerRouter.patch("/", timerController.update);
+
+export { timerRouter };

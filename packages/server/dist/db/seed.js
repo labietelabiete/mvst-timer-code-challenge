@@ -13,10 +13,10 @@ exports.resetTimer = void 0;
 const timer_model_1 = require("../models/timer-model");
 function resetTimer() {
     return __awaiter(this, void 0, void 0, function* () {
-        const time = 0;
+        const time = { totalTime: 0 };
         yield timer_model_1.Timer.deleteMany({});
         // Reseting Timer value
-        yield timer_model_1.Timer.create([time]);
+        yield timer_model_1.Timer.create(time);
         console.log("Timer reset!");
     });
 }
