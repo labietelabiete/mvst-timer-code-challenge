@@ -17,5 +17,4 @@ const CONFIG = {
     },
 };
 exports.config = CONFIG;
-// const config = CONFIG;
 //# sourceMappingURL=config.js.map

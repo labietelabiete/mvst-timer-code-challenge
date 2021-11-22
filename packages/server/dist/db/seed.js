@@ -9,19 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const server_1 = require("./server");
-const config_1 = require("./config/config");
-const connect_1 = require("./db/connect");
-const seed_1 = require("./db/seed");
-console.log(config_1.config.db.url);
-(0, connect_1.connect)()
-    .then(() => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, seed_1.resetTimer)();
-    server_1.app.listen(config_1.config.app.port, () => {
-        console.log(`Server is now running at port ${config_1.config.app.port}!`);
+exports.resetTimer = void 0;
+const timer_model_1 = require("../models/timer-model");
+function resetTimer() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const time = 0;
+        yield timer_model_1.Timer.deleteMany({});
+        // Reseting Timer value
+        yield timer_model_1.Timer.create([time]);
+        console.log("Timer reset!");
     });
-}))
-    .catch((error) => {
-    console.log(`Error connecting the server: ${error}`);
-});
-//# sourceMappingURL=index.js.map
+}
+exports.resetTimer = resetTimer;
+//# sourceMappingURL=seed.js.map
