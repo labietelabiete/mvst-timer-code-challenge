@@ -24,7 +24,7 @@
     "server": "yarn workspace server start",
     "server-dev": "yarn workspace server dev",
     "stats-server": "yarn workspace stats-server start",
-    "start": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\"",
+    "start": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server-dev\"",
     "dev": "concurrently --kill-others-on-fail \"yarn client-dev\" \"yarn server-dev\""
   },
   "devDependencies": {
