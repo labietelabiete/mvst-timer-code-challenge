@@ -7,7 +7,6 @@ exports.config = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const { MONGO_DB_URL, PORT } = process.env;
-// console.log(MONGO_DB_URL);
 const CONFIG = {
     app: {
         port: PORT || 4000,

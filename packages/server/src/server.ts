@@ -16,7 +16,7 @@ app.use(
   rateLimit({
     windowMs: 24 * 60 * 60 * 1000, // 1 day
     max: 100,
-    message: "Reached 100 queries for application to MVST.",
+    message: "Reached 100 queries, limits for application to MVST.",
   }),
 );
 

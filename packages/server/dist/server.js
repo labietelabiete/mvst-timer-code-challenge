@@ -18,7 +18,7 @@ exports.app.use((0, cors_1.default)());
 exports.app.use((0, express_rate_limit_1.default)({
     windowMs: 24 * 60 * 60 * 1000,
     max: 100,
-    message: "Reached 100 queries for application to MVST.",
+    message: "Reached 100 queries, limits for application to MVST.",
 }));
 exports.app.use("/", timer_routes_1.timerRouter);
 //# sourceMappingURL=server.js.map
