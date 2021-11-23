@@ -12,16 +12,12 @@ export default function Timer({ darkMode }: { darkMode: boolean }) {
   const initialValue: number = 0;
   const [isOn, setIsOn] = useState<boolean>(false);
   const [globalTimerValue, setGlobalTimerValue] = useState<string>();
-  const [localTimerValue, setLocalTimerValue] = useState<string>(
-    secondsToString(initialValue)
-  );
   const [localTotalSeconds, setLocalTotalSeconds] =
     useState<number>(initialValue);
 
   const getGlobalValue = async () => {
     try {
       const { data } = await getTimer();
-      console.log(data.data[0].totalTime, "Entro en get");
       setGlobalTimerValue(secondsToString(data.data[0].totalTime));
     } catch (error) {
       console.log(error);
@@ -29,8 +25,9 @@ export default function Timer({ darkMode }: { darkMode: boolean }) {
   };
   const updateGlobalValue = async (totalSeconds: number) => {
     try {
-      console.log(totalSeconds, "Entro en update");
       await updateTimer(totalSeconds);
+      const { data } = await getTimer();
+      setGlobalTimerValue(secondsToString(data.data[0].totalTime));
     } catch (error) {
       console.log(error);
     }
@@ -41,25 +38,25 @@ export default function Timer({ darkMode }: { darkMode: boolean }) {
   }, []);
 
   useEffect(() => {
-    if (isOn) {
-      setTimeout(() => {
-        setLocalTotalSeconds((prevState) => {
-          return prevState + 1;
-        });
-      }, 1000);
-      setLocalTimerValue(secondsToString(localTotalSeconds));
-    } else {
-      setLocalTotalSeconds(initialValue);
-      setLocalTimerValue(secondsToString(localTotalSeconds));
+    const localTimeOut = setInterval(() => {
+      setLocalTotalSeconds((prevState) => {
+        return prevState + 1;
+      });
+    }, 1000);
+    if (!isOn) {
+      clearInterval(localTimeOut);
+      if (localTotalSeconds !== 0) {
+        updateGlobalValue(localTotalSeconds);
+        setLocalTotalSeconds(initialValue);
+      }
     }
-  }, [isOn, localTotalSeconds]);
+    return () => {
+      clearInterval(localTimeOut);
+    };
+  }, [isOn]);
 
   const handleIsOn = () => {
     setIsOn((prevState) => {
-      if (prevState) {
-        updateGlobalValue(localTotalSeconds);
-        getGlobalValue();
-      }
       return !prevState;
     });
   };
@@ -100,7 +97,7 @@ export default function Timer({ darkMode }: { darkMode: boolean }) {
             darkMode ? "timer-value dark-color" : "timer-value light-color"
           }
         >
-          {localTimerValue}
+          {secondsToString(localTotalSeconds)}
         </div>
       </button>
     </div>

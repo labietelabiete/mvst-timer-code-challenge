@@ -11,10 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resetTimer = void 0;
 const timer_model_1 = require("../models/timer-model");
+const timerlog_model_1 = require("../models/timerlog-model");
 function resetTimer() {
     return __awaiter(this, void 0, void 0, function* () {
         const time = { totalTime: 0 };
         yield timer_model_1.Timer.deleteMany({});
+        yield timerlog_model_1.TimerLog.deleteMany({});
         // Reseting Timer value
         yield timer_model_1.Timer.create(time);
         console.log("Timer reset!");
