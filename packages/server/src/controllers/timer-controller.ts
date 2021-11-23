@@ -20,11 +20,12 @@ async function get(req: Request, res: Response, next: NextFunction) {
 async function update(req: Request, res: Response, next: NextFunction) {
   try {
     const { localTime } = req.body;
+    console.log(localTime, "running update");
     // Updating the global value of the Timer
-    await db.Timer.updateMany({}, { $inc: { totalTime: localTime } });
+    await db.Timer.updateOne({}, { $inc: { totalTime: localTime } });
 
     // Creating the log from the local time
-    await db.TimerLog.create({ logTime: localTime });
+    await db.TimerLog.create({ timerLog: localTime });
 
     // Send response
     res.status(200).send({ message: "Timer updated succesfully!" });

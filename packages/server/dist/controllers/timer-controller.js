@@ -35,10 +35,11 @@ function update(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const { localTime } = req.body;
+            console.log(localTime, "running update");
             // Updating the global value of the Timer
-            yield models_1.default.Timer.updateMany({}, { $inc: { totalTime: localTime } });
+            yield models_1.default.Timer.updateOne({}, { $inc: { totalTime: localTime } });
             // Creating the log from the local time
-            yield models_1.default.TimerLog.create({ logTime: localTime });
+            yield models_1.default.TimerLog.create({ timerLog: localTime });
             // Send response
             res.status(200).send({ message: "Timer updated succesfully!" });
         }

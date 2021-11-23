@@ -15,7 +15,7 @@ app.use(cors());
 app.use(
   rateLimit({
     windowMs: 24 * 60 * 60 * 1000, // 1 day
-    max: 100,
+    max: 1000000,
     message: "Reached 100 queries, limits for application to MVST.",
   }),
 );
