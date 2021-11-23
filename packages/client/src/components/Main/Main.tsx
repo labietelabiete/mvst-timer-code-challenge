@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Timer from "../Timer";
 
 import { BsPlay, BsStop } from "react-icons/bs";
 
+import { getTimer } from "../../api/timer-api";
+
 import "./Main.scss";
 
 export default function Main({ darkMode }: { darkMode: boolean }) {
-  const [isOn, setIsOn] = useState(false);
-  const globalValue: string = "00:01:34";
+  const [isOn, setIsOn] = useState<boolean>(false);
+  const [globalTimerValue, setGlobalTimerValue] = useState<number>();
+
+  const getGlobalValue = async () => {
+    const { data } = await getTimer();
+    setGlobalTimerValue(data.data[0].totalTime);
+  };
+
+  useEffect(() => {
+    getGlobalValue();
+  }, []);
 
   const handleIsOn = () => {
     setIsOn((prevState) => {
@@ -30,7 +41,7 @@ export default function Main({ darkMode }: { darkMode: boolean }) {
             darkMode ? "global-timer light-color" : "global-timer dark-color"
           }
         >
-          {globalValue}{" "}
+          {globalTimerValue}{" "}
         </div>
         <button
           onClick={handleIsOn}

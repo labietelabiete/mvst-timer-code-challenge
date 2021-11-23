@@ -1,5 +1,4 @@
 export function secondsToString(totalSeconds: number): string {
-  console.log(totalSeconds);
   let hours: number | string = Math.floor(totalSeconds / 3600);
   let minutes: number | string = Math.floor(totalSeconds / 60);
   let seconds: number | string = Math.floor(totalSeconds);
