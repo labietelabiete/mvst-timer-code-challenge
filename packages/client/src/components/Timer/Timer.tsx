@@ -11,14 +11,14 @@ import "./Timer.scss";
 export default function Timer({ darkMode }: { darkMode: boolean }) {
   const initialValue: number = 0;
   const [isOn, setIsOn] = useState<boolean>(false);
-  const [globalTimerValue, setGlobalTimerValue] = useState<string>();
+  const [globalTimerValue, setGlobalTimerValue] = useState<number>(0);
   const [localTotalSeconds, setLocalTotalSeconds] =
     useState<number>(initialValue);
 
   const getGlobalValue = async () => {
     try {
       const { data } = await getTimer();
-      setGlobalTimerValue(secondsToString(data.data[0].totalTime));
+      setGlobalTimerValue(data.data[0].totalTime);
     } catch (error) {
       console.log(error);
     }
@@ -27,7 +27,7 @@ export default function Timer({ darkMode }: { darkMode: boolean }) {
     try {
       await updateTimer(totalSeconds);
       const { data } = await getTimer();
-      setGlobalTimerValue(secondsToString(data.data[0].totalTime));
+      setGlobalTimerValue(data.data[0].totalTime);
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +68,7 @@ export default function Timer({ darkMode }: { darkMode: boolean }) {
           darkMode ? "global-timer light-color" : "global-timer dark-color"
         }
       >
-        {globalTimerValue}{" "}
+        {secondsToString(globalTimerValue)}{" "}
       </div>
       <button
         onClick={handleIsOn}
