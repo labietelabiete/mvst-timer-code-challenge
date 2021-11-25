@@ -1,3 +1,3 @@
 export const API = {
-  MAIN: "http://localhost:4000",
+  MAIN: "https://mvst-timer-challenge-api.herokuapp.com/",
 };
